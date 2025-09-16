@@ -1,0 +1,114 @@
+/* ============== NAVBAR ONLY (.app-topbar) ============== */
+/* ใช้ตัวแปรเดิม ถ้าไม่ได้ประกาศไว้ จะใช้ค่า fallback ใน var(...) */
+nav.app-topbar{
+  position: fixed !important;                 /* ไม่ให้ sticky อื่นมาทับ */
+  top: 0;
+  left: calc(var(--sidebar-w, 240px) + var(--sidebar-border-w, 1px)) !important;
+  width: calc(100% - (var(--sidebar-w, 240px) + var(--sidebar-border-w, 1px))) !important;
+  height: var(--topbar-h, 65px);
+  display: flex; align-items: center;
+  background: var(--brand, #858585);          /* เทาเข้มกลางๆ */
+  color:#fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  z-index: 1035;
+}
+
+/* แบรนด์/โลโก้ซ้าย */
+.app-topbar .brand{
+  display:flex; align-items:center; gap:.5rem;
+  color:#fff; font-weight:600; text-decoration:none;
+}
+.app-topbar .brand:hover{ opacity:.9; }
+/* ขยับ brand ออกขวานิดหน่อยให้ไม่ชิดขอบ */
+.app-topbar .brand{ margin-left: 12px; }
+@media (min-width: 992px){ .app-topbar .brand{ margin-left: 20px; } }
+@media (min-width: 1400px){ .app-topbar .brand{ margin-left: 32px; } }
+
+/* กล่องค้นหา (ขวา) */
+.app-topbar .search-input{ min-width:320px; }
+.app-topbar .form-control, .app-topbar .btn{ height:40px; line-height:40px; }
+/* ปุ่มค้นหา: ทำให้ไอคอนอยู่กึ่งกลางปุ่มจริงๆ */
+.app-topbar form.search-group > button[type="submit"]{
+  width: 40px; height: 40px; padding: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
+.app-topbar form.search-group > button[type="submit"] .bi{
+  font-size: 18px; line-height: 1; pointer-events: none;
+}
+
+/* กัน .nav-link ของ sidebar ไม่ไปรบ navbar */
+.app-topbar .nav-link{
+  color:inherit !important; background:transparent !important;
+  padding:.5rem .75rem; border-radius:.5rem;
+}
+.app-topbar .nav-link:hover{ opacity:.9; }
+
+/* เมนูดรอปดาวน์ */
+.app-topbar .dropdown-item{ color:#111827; }
+.app-topbar .dropdown-item:hover{ background:#f1f5f9; }
+.app-topbar .dropdown-menu{ z-index:1050; }
+
+/* ========= กระดิ่ง + badge จำนวน (สไตล์ตามรูป) ========= */
+/* หุ้มไอคอนกระดิ่งไว้เพื่อเป็น anchor ของ badge */
+.app-topbar .notif-bell{
+  position:relative; display:inline-flex; align-items:center; line-height:1;
+}
+/* วงกลมแดงบนมุมขวาบน + มีขอบสีขาว */
+.app-topbar .notif-badge{
+  position:absolute; top:0; right:0;
+  transform: translate(38%, -42%);              /* ดันให้โผล่พ้นมุมเหมือนตัวอย่าง */
+  display:flex; align-items:center; justify-content:center;
+  min-width:22px; height:22px; padding:0 6px;   /* 2 หลักยืดแนวนอนได้ */
+  border-radius:999px;
+  background:#e11d48; color:#fff;
+  font-weight:700; font-size:.8rem;
+  border:2px solid #fff;                        /* ขอบขาวรอบวง */
+  box-shadow:0 1px 2px rgba(0,0,0,.06);
+  pointer-events:none; z-index:1;
+}
+/* ถ้าอยากให้ขอบกลืนกับสีแถบนำทาง ให้ใช้บรรทัดนี้แทน:
+.app-topbar .notif-badge{ border-color: var(--brand, #595b5f); }
+*/
+
+/* กล่องแจ้งเตือน */
+.app-topbar .dropdown-menu-notif{
+  width:420px; max-height:70vh; overflow:auto;
+  border:1px solid var(--line, #e9ecef); border-radius:12px;
+}
+@media (max-width:575.98px){
+  .app-topbar .dropdown-menu-notif{ width:min(92vw,420px); }
+}
+
+/* Tabs: สลิปใหม่ / ใกล้หมดเวลา (เม็ดแคปซูล) */
+.app-topbar .dropdown-menu-notif .nav-tabs{ border:0; padding:6px 8px; gap:8px; }
+.app-topbar .dropdown-menu-notif .nav-tabs .nav-link{
+  border:0; background:#f3f4f6; color:#374151;
+  border-radius:999px; font-weight:600; padding:.35rem .8rem;
+}
+.app-topbar .dropdown-menu-notif .nav-tabs .nav-link:hover{ background:#e5e7eb; }
+.app-topbar .dropdown-menu-notif .nav-tabs .nav-link.active{
+  background: var(--primary, #0d6efd); color:#fff;
+}
+/* โทน focus นุ่ม ๆ */
+.app-topbar .dropdown-menu-notif .nav-link:focus,
+.app-topbar .dropdown-menu-notif .nav-link:focus-visible{
+  outline:0; box-shadow:0 0 0 .2rem rgba(var(--primary-rgb, 13,110,253), .25);
+}
+
+/* รายการแจ้งเตือน */
+.app-topbar .notif-item{
+  cursor:pointer; border-left:4px solid transparent; transition: background .15s ease;
+}
+.app-topbar .notif-item:hover{ background:#f4f6ff; }
+.app-topbar .notif-item.unread{ background:#f8f9fa; border-left-color: var(--primary, #0d6efd); }
+.app-topbar .notif-time{ font-size:.82rem; color: var(--muted, #6c757d); }
+
+/* มือถือ/จอแคบ: ซ่อน sidebar → navbar เต็มกว้าง */
+@media (max-width: 991.98px){
+  nav.app-topbar{
+    left: 0 !important;
+    width: 100% !important;
+  }
+  .app-topbar .search-input{ min-width:180px; }
+}

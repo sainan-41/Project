@@ -1,0 +1,21 @@
+
+    .topbar {height: 60px; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            z-index: 1050; 
+            display: flex; 
+            justify-content: center;
+            align-items: center; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+            background-color: rgb(212, 194, 156);
+        }
+    .topbar img {height: 50px; 
+        
+        }
+
+    .content {margin-left: 220px; 
+              padding: 20px; 
+              margin-top: 70px; /* ขยับลงเพื่อไม่ทับ topbar */
+        }

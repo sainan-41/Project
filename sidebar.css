@@ -1,0 +1,13 @@
+/* sidebar.css */
+    
+    .sidebar {width: 220px; height: 100vh; position: fixed; top: 0; left: 0; margin-top: 60px; /* ✅ สำคัญสุด!! */
+              background: #1f2937; color: #f9fafb; padding: 20px 15px; box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+              border-right: 1px solid #374151; z-index: 1000; }
+    .sidebar .profile img {width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid #3b82f6;}
+    .sidebar .name {margin-top: 10px; font-weight: bold; font-size: 15px; color: #e5e7eb; }
+    .sidebar a {display: flex; align-items: center; padding: 10px 12px;  margin: 8px 0; font-size: 14px; color: #d1d5db;
+                text-decoration: none; border-radius: 6px; transition: all 0.2s ease-in-out; }
+    .sidebar a:hover {background-color: #3b82f6; color: white; }
+    .sidebar a.active {background-color: #2563eb; color: white; }
+    .sidebar i {font-size: 18px; margin-right: 10px; }
+ 

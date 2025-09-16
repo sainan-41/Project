@@ -1,0 +1,151 @@
+/* ========== Base ========== */
+:root {
+  --sidebar-w: 240px; /* ปรับได้ตามจริง */
+  --topbar-h: 70px;   /* ปรับได้ตามจริง */
+  
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.wrapper {
+  min-height: 100vh;
+}
+
+/* ========== Sidebar ========== */
+.main-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px 10px;
+  overflow-y: auto;
+  z-index: 1040;
+}
+
+.sidebar-wrapper {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.sidebar-wrapper img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3b82f6;
+}
+
+.sidebar-wrapper .name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Links */
+.nav-link {
+  display: flex;
+  align-items: center;
+  color: #fff !important;
+  padding: 10px 15px;
+  text-decoration: none !important;
+  border-radius: 5px;
+}
+
+.nav-link:hover { background-color: #495057; }
+
+.nav-treeview .nav-link {
+  padding-left: 30px;
+  display: block;
+  color: #fff !important;
+}
+
+.nav-item .bi-chevron-down {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.nav-link.active {
+  background-color: #495057;
+  font-weight: 600;
+}
+
+/* สีช่วยจำ */
+.text-danger { color: red !important; }
+.text-pink { color: #e83e8c !important; }
+.text-purple { color: #6f42c1 !important; }
+.text-orange { color: #fd7e14 !important; }
+.text-teal { color: #20c997 !important; }
+.text-lime { color: #84cc16 !important; }
+.text-sky { color: #0ea5e9 !important; }
+.text-pastel-pink { color: #f8c8dc !important; }
+.text-pastel-purple { color: #d6c7f7 !important; }
+.text-pastel-blue { color: #a5d8ff !important; }
+.text-pastel-green { color: #c3f5c5 !important; }
+.text-pastel-yellow { color: #fff3b0 !important; }
+.text-pastel-orange { color: #ffd8a8 !important; }
+.text-pastel-lavender { color: #e6e6fa !important; }
+
+.disabled-link {
+  cursor: default;
+  pointer-events: none;
+  color: #ffffff !important;
+  background-color: transparent !important;
+}
+
+.sidebar-divider {
+  border: 0;
+  border-top: 1px solid #6c757d;
+  margin: 10px 0;
+  opacity: 0.6;
+}
+
+/* ขนาดฟอนต์/ไอคอนใน Sidebar */
+.main-sidebar,
+.main-sidebar .nav-link,
+.main-sidebar .nav-link span,
+.main-sidebar .nav-treeview .nav-link {
+  font-size: 15px;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+.main-sidebar .nav-link i { font-size: 18px; margin-right: 6px; }
+
+/* ========== Topbar (ติดบน-ชิด sidebar-ชิดขวา) ========== */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-w);
+  right: 0;
+  height: var(--topbar-h);
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-bottom: 1px solid #e9ecef;
+  z-index: 1035;
+}
+
+/* ========== เนื้อหา ========== */
+.content, .main-content {
+  margin-left: var(--sidebar-w);   /* หลบ sidebar fixed */
+  padding: 10px;
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding-top: calc(var(--topbar-h) + 16px); /* กันไม่ให้ topbar ทับ */
+}
+
+/* ========== Responsive (ทางเลือก) ========== */
+@media (max-width: 991.98px) {
+  :root { --sidebar-w: 0px; }
+  .main-sidebar { transform: translateX(-100%); } /* ถ้าอยากทำเมนูปัดเข้าออก ค่อยเพิ่มสคริปต์ภายหลัง */
+  .topbar { left: 0; }
+  .content, .main-content {
+    margin-left: 0;
+    padding-top: calc(var(--topbar-h) + 16px);
+  }
+}
